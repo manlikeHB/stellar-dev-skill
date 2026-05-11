@@ -640,7 +640,7 @@ For DeFi protocols, wallets, oracles, gaming/NFTs, cross-chain bridges, and buil
 
 ## Security
 
-For vulnerability patterns, checklists, and detailed tooling guides, see [security.md](../soroban/SKILL.md).
+For vulnerability patterns, checklists, and detailed tooling guides, see [Soroban security section](../soroban/SKILL.md).
 
 ### Bug Bounty Programs
 - [Stellar Bug Bounty (Immunefi)](https://immunefi.com/bug-bounty/stellar/) - Up to $250K, covers core + Soroban
