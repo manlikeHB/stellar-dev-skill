@@ -2063,12 +2063,6 @@ Implementation guidance:
 - Upgrade tests from old state snapshots to new versions.
 - Negative tests for unauthorized and malformed calls.
 
-## Related docs
-- Core contract development: `contracts-soroban.md`
-- Security checks: `security.md`
-- Testing approach: `testing.md`
-- Standards references: `standards-reference.md`
-
 ---
 
 # Part 5: Common Pitfalls
