@@ -1,4 +1,4 @@
-import { Badge, Card, Logo } from "@stellar/design-system";
+import { Badge, Logo } from "@stellar/design-system";
 
 import { INSTALLERS } from "@/data/installers.mjs";
 import {
@@ -13,6 +13,8 @@ import { GitHubIcon, LinkExternal01Icon } from "./_components/icons";
 import { SkillCard } from "./_components/SkillCard";
 import { SkillsFilter } from "./_components/SkillsFilter";
 import { ThemeSwitchIsland } from "./_components/ThemeSwitchIsland";
+
+const INSTALL_TABS = ["Use without installing", "Install Stellar Skills"] as const;
 
 import "./styles.scss";
 
@@ -111,53 +113,50 @@ export default function LandingPage() {
             Give your AI the right Stellar context before it writes code. Works
             with any AI agent.
           </h1>
-
-          <div className="SkillsLanding__pill">
-            <CopyButton variant="pill" value={heroValue} />
-          </div>
         </section>
 
         <section className="SkillsLanding__installing" aria-label="Installing">
-          <h2 className="SkillsLanding__sectionTitle">Installing Stellar Skills</h2>
-          <p className="SkillsLanding__sectionDescription">
-            Stellar Skills work with any agent that supports the{" "}
-            <a
-              href="https://agentskills.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="SkillsLanding__inlineLink"
-            >
-              Agent Skills standard
-            </a>
-            , including Claude Code, OpenCode, OpenAI Codex, and Pi.
-          </p>
           <SkillsFilter
-            filters={INSTALLERS.map((i) => i.name)}
-            defaultFilter="Claude Code"
+            filters={INSTALL_TABS}
+            defaultFilter="Use without installing"
             panelClassName="SkillsLanding__installerPanel"
-            ariaLabel="Filter installation method"
+            ariaLabel="Installation method"
           >
-            {INSTALLERS.map((installer) => (
-              <div
-                key={installer.name}
-                className="SkillsLanding__filterItem"
-                data-category={installer.name}
-              >
-                <Card>
-                  <div className="SkillsCard">
-                    <h3 className="SkillsCard__title">{installer.name}</h3>
-                    <p className="SkillsCard__description">
-                      {installer.description}
-                    </p>
-                    <div className="SkillsCard__commands">
+            <div
+              className="SkillsLanding__filterItem"
+              data-category="Use without installing"
+            >
+              <div className="SkillsLanding__installOneTime">
+                <span className="SkillsLanding__installLabel">
+                  Tell your agent:
+                </span>
+                <CopyButton variant="path" value={heroValue} />
+              </div>
+            </div>
+
+            <div
+              className="SkillsLanding__filterItem"
+              data-category="Install Stellar Skills"
+            >
+              <div className="SkillsLanding__installRows">
+                {INSTALLERS.map((installer, index) => (
+                  <div
+                    key={installer.name}
+                    className="SkillsLanding__installRow"
+                    data-first={index === 0}
+                  >
+                    <span className="SkillsLanding__installToolName">
+                      {installer.name}
+                    </span>
+                    <div className="SkillsLanding__installCommands">
                       {installer.commands.map((cmd) => (
                         <CopyButton key={cmd} variant="path" value={cmd} />
                       ))}
                     </div>
                   </div>
-                </Card>
+                ))}
               </div>
-            ))}
+            </div>
           </SkillsFilter>
         </section>
 

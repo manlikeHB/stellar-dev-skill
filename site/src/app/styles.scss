@@ -172,21 +172,21 @@
   text-align: center;
 }
 
-.SkillsLanding__title {
+.SkillsLanding h1.SkillsLanding__title {
   position: relative;
   z-index: 1;
   font-family: "Inter", sans-serif;
-  font-size: pxToRem(36px);
+  font-size: pxToRem(32px);
   font-weight: 600;
   letter-spacing: -0.5px;
-  line-height: pxToRem(44px);
+  line-height: pxToRem(40px);
   color: var(--sds-clr-gray-12);
-  margin: 0 0 pxToRem(24px) 0;
+  margin: 0;
   max-width: pxToRem(820px);
 
   @media (max-width: 768px) {
-    font-size: pxToRem(28px);
-    line-height: pxToRem(36px);
+    font-size: pxToRem(26px);
+    line-height: pxToRem(34px);
   }
 }
 
@@ -498,10 +498,9 @@ h2.SkillsCard__title {
 }
 
 // =============================================================================
-// Community + Installing sections (share the bordered-panel + card-grid look)
+// Community section (bordered panel)
 // =============================================================================
-.SkillsLanding__ecosystem,
-.SkillsLanding__installing {
+.SkillsLanding__ecosystem {
   padding: pxToRem(16px);
   background-color: transparent;
   border: 1px solid var(--sds-clr-gray-06);
@@ -526,10 +525,9 @@ p.SkillsLanding__sectionDescription {
   color: var(--sds-clr-gray-11);
 }
 
-// Card overrides shared by both panels (transparent SkillsCard inside a
-// bordered SDS Card).
-.SkillsLanding__ecosystemGrid,
-.SkillsLanding__installerPanel {
+// Community grid card overrides (transparent SkillsCard inside a bordered
+// SDS Card).
+.SkillsLanding__ecosystemGrid {
   .Card {
     --Card-color-border: var(--sds-clr-gray-06);
     --Card-color-background: transparent;
@@ -559,21 +557,19 @@ p.SkillsLanding__sectionDescription {
   }
 }
 
-// Installer panel: independent tablist; only the active tab's card
-// shows. Stacks via flex column because exactly one card is visible.
+// Installer panel: independent tablist; only the active tab's panel
+// shows. Stacks via flex column because exactly one panel is visible.
 .SkillsLanding__installerPanel {
   display: flex;
   flex-direction: column;
-  margin-top: pxToRem(12px);
+  margin-top: pxToRem(24px);
 }
 
 .SkillsLanding__installerPanel .SkillsLanding__filterItem {
   display: none;
 }
 
-@each $tab
-  in ("Claude Code", "Cursor", "npx skills", "Clone repo")
-{
+@each $tab in ("Use without installing", "Install Stellar Skills") {
   .SkillsLanding__installerPanel[data-active-filter="#{$tab}"]
     .SkillsLanding__filterItem[data-category="#{$tab}"] {
     display: block;
@@ -648,6 +644,110 @@ h3.SkillsCard__title {
     &:hover {
       color: var(--sds-clr-lilac-09);
     }
+  }
+}
+
+// =============================================================================
+// Installing section: underline-style tabs + two panel layouts
+// =============================================================================
+// Override the default pill-style SkillsLanding__filterTab when used inside
+// the install section so the tabs render as centered underlined links.
+.SkillsLanding__installing .SkillsLanding__filters {
+  justify-content: center;
+  gap: pxToRem(32px);
+}
+
+.SkillsLanding__installing .SkillsLanding__filterTab {
+  padding: 0 pxToRem(4px) pxToRem(8px);
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+  font-size: pxToRem(14px);
+  font-weight: 500;
+  line-height: pxToRem(20px);
+  color: var(--sds-clr-gray-09);
+  transition:
+    color var(--sds-anim-transition-default),
+    border-color var(--sds-anim-transition-default);
+
+  &[data-is-active="true"] {
+    background-color: transparent;
+    color: var(--sds-clr-lilac-11);
+    border-bottom-color: var(--sds-clr-lilac-11);
+    font-weight: 500;
+  }
+
+  @media (hover: hover) {
+    &:hover:not([data-is-active="true"]) {
+      color: var(--sds-clr-gray-11);
+    }
+  }
+}
+
+// "Use without installing" — single inline "Tell your agent:" label + copy
+// pill, centered on a transparent panel.
+.SkillsLanding__installOneTime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: pxToRem(12px);
+  padding: pxToRem(16px);
+}
+
+.SkillsLanding__installLabel {
+  font-family: "Inter", sans-serif;
+  font-size: pxToRem(14px);
+  font-weight: 400;
+  line-height: pxToRem(24px);
+  color: var(--sds-clr-gray-09);
+}
+
+// "Install in your agent" — list of tool rows on a tinted panel.
+.SkillsLanding__installRows {
+  display: flex;
+  flex-direction: column;
+  padding: pxToRem(16px);
+  background-color: var(--sds-clr-gray-01);
+  border-radius: pxToRem(8px);
+}
+
+.SkillsLanding__installRow {
+  display: flex;
+  align-items: flex-start;
+  gap: pxToRem(12px);
+  padding: pxToRem(10px) 0;
+  border-top: 0.5px solid var(--sds-clr-gray-06);
+
+  &[data-first="true"] {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+.SkillsLanding__installToolName {
+  flex-shrink: 0;
+  width: pxToRem(100px);
+  font-family: "Inter", sans-serif;
+  font-size: pxToRem(14px);
+  font-weight: 400;
+  line-height: pxToRem(24px);
+  color: var(--sds-clr-gray-09);
+}
+
+.SkillsLanding__installCommands {
+  display: flex;
+  flex-direction: column;
+  gap: pxToRem(6px);
+  flex: 1;
+  min-width: 0;
+
+  .SkillsCard__pathWrapper {
+    max-width: 100%;
+  }
+
+  .SkillsCard__pathText {
+    overflow-wrap: anywhere;
   }
 }
 
