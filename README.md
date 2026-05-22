@@ -31,7 +31,7 @@ These skills work with any agent that supports the [Agent Skills](https://agents
 /plugin marketplace add stellar/stellar-dev-skill
 
 # Then install the skill
-/plugin install stellar-dev@stellar-dev-skill
+/plugin install stellar-dev@stellar-dev
 ```
 
 ### [npx skills](https://skills.sh)

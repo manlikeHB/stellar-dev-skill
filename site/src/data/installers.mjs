@@ -21,7 +21,7 @@ export const INSTALLERS = [
     description: "Install using the plugin marketplace:",
     commands: [
       "/plugin marketplace add stellar/stellar-dev-skill",
-      "/plugin install stellar-dev@stellar-dev-skill",
+      "/plugin install stellar-dev@stellar-dev",
     ],
   },
   {
