@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://skills.stellar.org/sitemap.xml
